@@ -53,7 +53,7 @@ impl DocFile {
 		let template_file = if file.is_absolute() {
 			file
 		} else {
-			let repo_root = get_project_root().expect("We need to work in a repo");
+			let repo_root = get_project_root()?;
 			repo_root.join(file)
 		};
 
