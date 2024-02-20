@@ -1,11 +1,11 @@
 :toc: right
 :prj: prdoc
 :cli: pass:q[`prdoc`]
-:repo: https://github.com/paritytech/prdoc
+:repo: https://github.com/chevdor/prdoc
 
 = PRDoc
 
-image::https://github.com/paritytech/prdoc/actions/workflows/quick-check.yml/badge.svg?branch=master[link="https://github.com/paritytech/prdoc/actions/workflows/quick-check.yml"]
+image::https://github.com/chevdor/prdoc/actions/workflows/quick-check.yml/badge.svg?branch=master[link="https://github.com/chevdor/prdoc/actions/workflows/quick-check.yml"]
 
 include::doc/intro.adoc[]
 

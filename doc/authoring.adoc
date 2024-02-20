@@ -16,7 +16,7 @@ grep output *prdoc.toml
 
 === Using the `prdoc` cli
 
-You will however find it more convenient to https://github.com/paritytech/prdoc#install[install] and use the `prddoc`
+You will however find it more convenient to https://github.com/chevdor/prdoc#install[install] and use the `prddoc`
 cli and just run:
 
 ```

@@ -1,6 +1,6 @@
 prdoc is a utility to generate, check and load PRDoc files.
 
-More at <https://github.com/paritytech/prdoc>
+More at <https://github.com/chevdor/prdoc>
 
 Usage: prdoc [OPTIONS] [COMMAND]
 

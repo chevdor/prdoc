@@ -1,7 +1,7 @@
 # PRDoc
 
 <figure>
-<img src="https://github.com/paritytech/prdoc/actions/workflows/quick-check.yml/badge.svg?branch=master" alt="badge" />
+<img src="https://github.com/chevdor/prdoc/actions/workflows/quick-check.yml/badge.svg?branch=master" alt="badge" />
 </figure>
 
 `prdoc` is a tool designed to help generating, checking and loading `.prdoc` files.
@@ -64,7 +64,7 @@ This folder is also defined in the config (`./prdoc` is the default\`):
 
 ### Using the `prdoc` cli
 
-You will however find it more convenient to [install](https://github.com/paritytech/prdoc#install) and use the `prddoc`
+You will however find it more convenient to [install](https://github.com/chevdor/prdoc#install) and use the `prddoc`
 cli and just run:
 
     prdoc generate 9999
@@ -161,7 +161,7 @@ You then need to point to the right schemas:
 
      "yaml.schemas": {
         [...other schemas...]
-        "/path/to/polkadot-sdk/prdoc/schema_user.json": "*polkadot-sdk*/**/*.prdoc",
+        "/path/to/<your_repo>>/prdoc/schema_user.json": "*<your_repo>>*/**/*.prdoc",
         "/path/to/subxt/prdoc/schema_user.json": "*subxt*/**/*.prdoc"
       },
 
@@ -174,7 +174,7 @@ Should you initially have created the file with another extension such as `.txt`
 
     prdoc is a utility to generate, check and load PRDoc files.
 
-    More at <https://github.com/paritytech/prdoc>
+    More at <https://github.com/chevdor/prdoc>
 
     Usage: prdoc [OPTIONS] [COMMAND]
 
@@ -187,7 +187,7 @@ Should you initially have created the file with another extension such as `.txt`
 
     Options:
       -c, --config <CONFIG>
-              [env: PRDOC_CONFIG=]
+              [env: PRDOC_CONFIG=.prdoc-sdk.toml]
 
       -d, --prdoc-folders <PRDOC_FOLDERS>
               [env: PRDOC_FOLDERS=]
@@ -212,7 +212,7 @@ Should you initially have created the file with another extension such as `.txt`
 
     Options:
           --dry-run                        Do not save the generated document to file with the proper naming, show the content instead
-      -c, --config <CONFIG>                [env: PRDOC_CONFIG=]
+      -c, --config <CONFIG>                [env: PRDOC_CONFIG=.prdoc-sdk.toml]
       -o, --output-dir <OUTPUT_DIR>        Optional output directory. It not passed, the default `PRDOC_DIR` will be used under the root of the current project
       -d, --prdoc-folders <PRDOC_FOLDERS>  [env: PRDOC_FOLDERS=]
       -j, --json                           Output as json
@@ -226,7 +226,7 @@ Should you initially have created the file with another extension such as `.txt`
 
     Options:
       -f, --file <FILE>                    Directly specify the file to be checked. It can be relative to the base directory
-      -c, --config <CONFIG>                [env: PRDOC_CONFIG=]
+      -c, --config <CONFIG>                [env: PRDOC_CONFIG=.prdoc-sdk.toml]
       -n, --number <NUMBER>                number
       -d, --prdoc-folders <PRDOC_FOLDERS>  [env: PRDOC_FOLDERS=]
       -l, --list <LIST>                    Get the list of PR numbers from a file
@@ -242,7 +242,7 @@ Should you initially have created the file with another extension such as `.txt`
 
     Options:
       -a, --all                            Also return invalid files
-      -c, --config <CONFIG>                [env: PRDOC_CONFIG=]
+      -c, --config <CONFIG>                [env: PRDOC_CONFIG=.prdoc-sdk.toml]
       -s, --sort                           Sort the output
       -d, --prdoc-folders <PRDOC_FOLDERS>  [env: PRDOC_FOLDERS=]
       -j, --json                           Output as json
@@ -256,10 +256,11 @@ Should you initially have created the file with another extension such as `.txt`
 
     Options:
       -f, --file <FILE>                    file path
-      -c, --config <CONFIG>                [env: PRDOC_CONFIG=]
+      -c, --config <CONFIG>                [env: PRDOC_CONFIG=.prdoc-sdk.toml]
       -n, --number <NUMBER>                One or more PR numbers. Depending on the host OS, the max length of a command may differ. If you run into issues, make sure to check the `--list` option instead
       -d, --prdoc-folders <PRDOC_FOLDERS>  [env: PRDOC_FOLDERS=]
       -l, --list <LIST>                    Get the list of PR numbers from a file
+      -s, --schema <SCHEMA>                Schema to be used. Passing this flag/ENV overrides the value from the config [env: PRDOC_SCHEMA=]
       -j, --json                           Output as json
       -h, --help                           Print help
 
@@ -270,35 +271,35 @@ version of `prdoc`. This chapter explains how to proceed.
 
 prdoc is designed to work at the repository level and you need to mount your repo as `/repo` into the prdoc container.
 
-    podman run --rm -it -v $PWD:/repo paritytech/prdoc --help
+    podman run --rm -it -v $PWD:/repo chevdor/prdoc --help
 
         ENGINE=podman
         DOC_PATH="$PWD/tests/data/some"
-        $ENGINE run --rm -it -v $DOC_PATH:/repo paritytech/prdoc --help
-        $ENGINE run --rm -it -v $DOC_PATH:/repo paritytech/prdoc scan --all
-        $ENGINE run --rm -it -v $DOC_PATH:/repo paritytech/prdoc check
-        $ENGINE run --rm -it -v $DOC_PATH:/repo paritytech/prdoc load
+        $ENGINE run --rm -it -v $DOC_PATH:/repo chevdor/prdoc --help
+        $ENGINE run --rm -it -v $DOC_PATH:/repo chevdor/prdoc scan --all
+        $ENGINE run --rm -it -v $DOC_PATH:/repo chevdor/prdoc check
+        $ENGINE run --rm -it -v $DOC_PATH:/repo chevdor/prdoc load
 
 The container image is working by default in `/repo` so it makes it simpler if you mount your repo there as shown
 above.
 
 ### Run
 
-    podman run --rm -it -v $PWD:/repo paritytech/prdoc --help
+    podman run --rm -it -v $PWD:/repo chevdor/prdoc --help
 
         ENGINE=podman
         DOC_PATH="$PWD/tests/data/some"
-        $ENGINE run --rm -it -v $DOC_PATH:/repo paritytech/prdoc --help
-        $ENGINE run --rm -it -v $DOC_PATH:/repo paritytech/prdoc scan --all
-        $ENGINE run --rm -it -v $DOC_PATH:/repo paritytech/prdoc check
-        $ENGINE run --rm -it -v $DOC_PATH:/repo paritytech/prdoc load
+        $ENGINE run --rm -it -v $DOC_PATH:/repo chevdor/prdoc --help
+        $ENGINE run --rm -it -v $DOC_PATH:/repo chevdor/prdoc scan --all
+        $ENGINE run --rm -it -v $DOC_PATH:/repo chevdor/prdoc check
+        $ENGINE run --rm -it -v $DOC_PATH:/repo chevdor/prdoc load
 
 The container image is working by default in `/repo` so it makes it simpler if you mount your repo there as shown
 above.
 
 Commands can end up quite lengthy so you may like to set an alias:
 
-        alias prdoc='podman run --rm -it -v $PWD:/repo paritytech/prdoc'
+        alias prdoc='podman run --rm -it -v $PWD:/repo chevdor/prdoc'
 
 After setting this alias, you may use `prdoc` by simply invoking the `prdoc` command:
 
@@ -310,7 +311,7 @@ details.
 
 ### Build
 
-You can pull the container image from `paritytech`/`prdoc` or build you own:
+You can pull the container image from `chevdor`/`prdoc` or build you own:
 
         podman build -t prdoc .
 

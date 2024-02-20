@@ -57,7 +57,7 @@ tag-push:
 container-build:
 	#!/usr/bin/env bash
 	ENGINE=${ENGINE:-podman}
-	$ENGINE build -t prdoc:v$TAG -t paritytech/prdoc -t docker.io/paritytech/prdoc .
+	$ENGINE build -t prdoc:v$TAG -t chevdor/prdoc -t docker.io/chevdor/prdoc .
 	$ENGINE run --rm -it -v $PWD:/repo  prdoc --version
 	$ENGINE images | grep prdoc
 
@@ -66,6 +66,11 @@ container-check:
 	ENGINE=${ENGINE:-podman}
 	$ENGINE run --rm -it -v $PWD:/repo  prdoc --help
 	$ENGINE run --rm -it -v $PWD:/repo  prdoc --version
+
+container-push:
+	#!/usr/bin/env bash
+	ENGINE=${ENGINE:-podman}
+	$ENGINE push docker.io/chevdor/prdoc
 
 # Watch and hot-reload the rustdoc
 rustdoc_watch:

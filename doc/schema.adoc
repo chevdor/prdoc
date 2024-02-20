@@ -18,7 +18,7 @@ You then need to point to the right schemas:
 ----
  "yaml.schemas": {
     [...other schemas...]
-    "/path/to/polkadot-sdk/prdoc/schema_user.json": "*polkadot-sdk*/**/*.prdoc",
+    "/path/to/<your_repo>>/prdoc/schema_user.json": "*<your_repo>>*/**/*.prdoc",
     "/path/to/subxt/prdoc/schema_user.json": "*subxt*/**/*.prdoc"
   },
 ----
